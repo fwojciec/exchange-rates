@@ -16,6 +16,7 @@ const Home: React.FC = () => {
   const [rate, setRate] = React.useState('')
 
   function onGetRate() {
+    setRate('')
     fetch(`https://api.exchangeratesapi.io/${date}?base=${agrCur}&symbols=${repCur}`)
       .then(resp => resp.json())
       .then(resp => setRate(resp.rates[repCur]))
