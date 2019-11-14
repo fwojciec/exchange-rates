@@ -1,5 +1,41 @@
 import React from 'react'
 
+const codes = [
+  'AUD',
+  'BGN',
+  'BRL',
+  'CAD',
+  'CHF',
+  'CNY',
+  'CZK',
+  'DKK',
+  'EUR',
+  'GBP',
+  'HKD',
+  'HRK',
+  'HUF',
+  'IDR',
+  'ILS',
+  'INR',
+  'ISK',
+  'JPY',
+  'KRW',
+  'MXN',
+  'MYR',
+  'NOK',
+  'NZD',
+  'PHP',
+  'PLN',
+  'RON',
+  'RUB',
+  'SEK',
+  'SGD',
+  'THB',
+  'TRY',
+  'USD',
+  'ZAR'
+]
+
 function mostRecentRoyDate() {
   const now = new Date()
   const year = now.getFullYear()
@@ -38,23 +74,31 @@ const Home: React.FC = () => {
         </div>
         <div>
           <label htmlFor="agreement-currency">Agreement Currency</label>
-          <input
+          <select
             id="agreement-currency"
             name="agreement-currency"
-            type="text"
-            value={agrCur}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAgrCur(e.target.value)}
-          />
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setAgrCur(e.target.value)}
+          >
+            {codes.map(c => (
+              <option key={c} value={c} selected={c === agrCur}>
+                {c}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
-          <label htmlFor="report-currency">Report currency</label>
-          <input
+          <label htmlFor="report-currency">Report Currency</label>
+          <select
             id="report-currency"
             name="report-currency"
-            type="text"
-            value={repCur}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRepCur(e.target.value)}
-          />
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setRepCur(e.target.value)}
+          >
+            {codes.map(c => (
+              <option key={c} value={c} selected={c === repCur}>
+                {c}
+              </option>
+            ))}
+          </select>
         </div>
       </form>
       <button onClick={onGetRate}>Get rate</button>
