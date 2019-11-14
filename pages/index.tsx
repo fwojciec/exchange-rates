@@ -36,6 +36,16 @@ const codes = [
   'ZAR'
 ]
 
+function validateDate(date: string): boolean {
+  const max = new Date()
+  const min = new Date('2009-01-02')
+  const parsed = new Date(date)
+  if (isNaN(parsed.valueOf()) || parsed > max || parsed < min) {
+    return false
+  }
+  return true
+}
+
 function mostRecentRoyDate() {
   const now = new Date()
   const year = now.getFullYear()
@@ -53,9 +63,14 @@ const Home: React.FC = () => {
 
   function onGetRate() {
     setRate('')
+    if (!validateDate(date)) {
+      setRate('Date is invalid')
+      return
+    }
     fetch(`https://api.exchangeratesapi.io/${date}?base=${agrCur}&symbols=${repCur}`)
       .then(resp => resp.json())
       .then(resp => setRate(resp.rates[repCur]))
+      .catch(error => console.log(error))
   }
 
   return (
@@ -77,10 +92,11 @@ const Home: React.FC = () => {
           <select
             id="agreement-currency"
             name="agreement-currency"
+            value={agrCur}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setAgrCur(e.target.value)}
           >
             {codes.map(c => (
-              <option key={c} value={c} selected={c === agrCur}>
+              <option key={c} value={c}>
                 {c}
               </option>
             ))}
@@ -91,10 +107,11 @@ const Home: React.FC = () => {
           <select
             id="report-currency"
             name="report-currency"
+            value={repCur}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setRepCur(e.target.value)}
           >
             {codes.map(c => (
-              <option key={c} value={c} selected={c === repCur}>
+              <option key={c} value={c}>
                 {c}
               </option>
             ))}
