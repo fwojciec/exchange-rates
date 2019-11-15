@@ -139,43 +139,61 @@ const Home: React.FC = () => {
         </div>
       </form>
       {rate == '' ? <button onClick={onGetRate}>Get rate</button> : <h2>{rate}</h2>}
-
       <style global jsx>
         {`
           body {
-            font-family: sans-serif;
+            font-family: 'San Francisco', Helvetica, Arial, san-serif;
+            margin: 2rem;
+            color: #2e3440;
+            background: #eceff4;
           }
 
           label {
             margin-right: 1rem;
             font-size: 0.9rem;
             display: block;
-            padding-bottom: 0.2rem;
+            padding-bottom: 0.25rem;
           }
 
           input {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            background-color: #eceff4;
+            border: 1px solid #d8dee9;
+            padding: 0.25rem 0.5rem;
           }
 
           select {
             font-size: 0.9rem;
             font-family: inherit;
             padding: 0.2rem;
+            background-color: #eceff4;
+            border: 1px solid #d8dee9;
+            padding: 0.25rem 0.5rem;
           }
 
           button {
             margin-top: 1rem;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-family: inherit;
-            padding: 0.3rem 0.6rem;
-            background: lightgray;
+            line-height: 1;
+            padding: 0.5rem 1rem;
+            color: #eceff4;
+            background: #5e81ac;
             text-transform: uppercase;
-            border: 1px solid darkgray;
+            border: 1px solid #81a1c1;
             border-radius: 3px;
           }
 
+          button:hover {
+            background: #81a1c1;
+          }
+
           .input {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+          }
+
+          .result {
+            margin-bottom: 1rem;
           }
         `}
       </style>
