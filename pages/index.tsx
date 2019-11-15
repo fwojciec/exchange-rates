@@ -138,7 +138,11 @@ const Home: React.FC = () => {
           </select>
         </div>
       </form>
-      {rate == '' ? <button onClick={onGetRate}>Get rate</button> : <h2>{rate}</h2>}
+      {rate == '' ? (
+        <button onClick={onGetRate}>Get rate</button>
+      ) : (
+        <h2 className="result">{rate}</h2>
+      )}
       <style global jsx>
         {`
           body {
@@ -193,7 +197,7 @@ const Home: React.FC = () => {
           }
 
           .result {
-            margin-bottom: 1rem;
+            margin-top: 2rem;
           }
         `}
       </style>
