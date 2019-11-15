@@ -151,7 +151,7 @@ const Home: React.FC = () => {
             font-family: 'San Francisco', Helvetica, Arial, san-serif;
             margin: 2rem;
             color: #2e3440;
-            background: #eceff4;
+            background: #e5e9f0;
           }
 
           label {
@@ -185,7 +185,7 @@ const Home: React.FC = () => {
             margin-top: 1rem;
             font-size: 0.9rem;
             line-height: 1;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
             color: #eceff4;
             background: #4c566a;
             text-transform: uppercase;
