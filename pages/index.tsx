@@ -155,39 +155,34 @@ const Home: React.FC = () => {
           }
 
           label {
+            display: block;
             margin-right: 1rem;
             font-size: 0.9rem;
-            display: block;
             padding-bottom: 0.25rem;
           }
 
-          input {
-            font-size: 1.25rem;
-            background-color: #eceff4;
-            border: 1px solid #d8dee9;
+          input,
+          select {
             padding: 0.25rem 0.5rem;
+            background-color: #eceff4;
           }
 
-          select {
-            font-size: 0.9rem;
+          input,
+          select,
+          button {
             font-family: inherit;
-            padding: 0.2rem;
-            background-color: #eceff4;
             border: 1px solid #d8dee9;
-            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
           }
 
           button {
             margin-top: 1rem;
             font-size: 0.9rem;
-            font-family: inherit;
             line-height: 1;
             padding: 0.5rem 1rem;
             color: #eceff4;
             background: #5e81ac;
             text-transform: uppercase;
-            border: 1px solid #81a1c1;
-            border-radius: 3px;
           }
 
           button:hover {
