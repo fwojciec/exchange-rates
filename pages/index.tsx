@@ -162,17 +162,23 @@ const Home: React.FC = () => {
           }
 
           input,
-          select {
-            padding: 0.25rem 0.5rem;
-            background-color: #eceff4;
-          }
-
-          input,
           select,
           button {
             font-family: inherit;
             border: 1px solid #d8dee9;
             border-radius: 3px;
+          }
+
+          input {
+            font-size: 1rem;
+            padding: 0.5rem 0.75rem;
+            background-color: #eceff4;
+          }
+
+          select {
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            background-color: #eceff4;
           }
 
           button {
