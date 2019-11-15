@@ -64,9 +64,12 @@ const Home: React.FC = () => {
   const [rate, setRate] = React.useState('')
   const [err, setErr] = React.useState(false)
 
-  function onGetRate() {
+  React.useEffect(() => {
     setRate('')
     setErr(false)
+  }, [date, agrCur, repCur])
+
+  function onGetRate() {
     if (!validateDate(date)) {
       setErr(true)
       return
@@ -78,17 +81,14 @@ const Home: React.FC = () => {
   }
 
   function onDateChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setRate('')
     setDate(e.target.value)
   }
 
   function onAgrCurChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setRate('')
     setAgrCur(e.target.value)
   }
 
   function onRepCurChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setRate('')
     setRepCur(e.target.value)
   }
 
