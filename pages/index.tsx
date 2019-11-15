@@ -1,5 +1,7 @@
 import React from 'react'
 
+const agreementCurrencies = ['EUR', 'GBP', 'PLN', 'USD']
+
 const codes = [
   'AUD',
   'BGN',
@@ -115,7 +117,7 @@ const Home: React.FC = () => {
             value={agrCur}
             onChange={onAgrCurChange}
           >
-            {codes.map(c => (
+            {agreementCurrencies.map(c => (
               <option key={c} value={c}>
                 {c}
               </option>
