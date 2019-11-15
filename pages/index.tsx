@@ -82,9 +82,14 @@ const Home: React.FC = () => {
           <input
             id="date"
             name="date"
-            type="text"
+            type="date"
             value={date}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDate(e.target.value)}
+            min="2009-01-02"
+            max={new Date().toISOString().split('T')[0]}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              console.log(e.target.value)
+              setDate(e.target.value)
+            }}
           />
         </div>
         <div>
