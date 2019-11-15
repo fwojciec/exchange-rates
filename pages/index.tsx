@@ -181,12 +181,12 @@ const Home: React.FC = () => {
             line-height: 1;
             padding: 0.5rem 1rem;
             color: #eceff4;
-            background: #5e81ac;
+            background: #4c566a;
             text-transform: uppercase;
           }
 
           button:hover {
-            background: #81a1c1;
+            background: #5e81ac;
           }
 
           .input {
