@@ -42,7 +42,8 @@
   },
   "settings": {
     "react": {
-      "version": "detect"
+      "version": "detect",
+      "import/core-modules": ["styled-jsx/css"]
     }
   },
   "overrides": [

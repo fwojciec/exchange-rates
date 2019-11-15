@@ -60,11 +60,13 @@ const Home: React.FC = () => {
   const [agrCur, setAgrCur] = React.useState('USD')
   const [repCur, setRepCur] = React.useState('PLN')
   const [rate, setRate] = React.useState('')
+  const [err, setErr] = React.useState(false)
 
   function onGetRate() {
     setRate('')
+    setErr(false)
     if (!validateDate(date)) {
-      setRate('Date is invalid')
+      setErr(true)
       return
     }
     fetch(`https://api.exchangeratesapi.io/${date}?base=${agrCur}&symbols=${repCur}`)
@@ -73,32 +75,45 @@ const Home: React.FC = () => {
       .catch(error => console.log(error))
   }
 
+  function onDateChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setRate('')
+    setDate(e.target.value)
+  }
+
+  function onAgrCurChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setRate('')
+    setAgrCur(e.target.value)
+  }
+
+  function onRepCurChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setRate('')
+    setRepCur(e.target.value)
+  }
+
   return (
     <div>
       <h1>Exchange rate checker</h1>
       <form>
-        <div>
+        <div className="input">
           <label htmlFor="date">Date</label>
           <input
             id="date"
             name="date"
             type="date"
+            style={{ color: err ? 'red' : 'inherit' }}
             value={date}
             min="2009-01-02"
             max={new Date().toISOString().split('T')[0]}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              console.log(e.target.value)
-              setDate(e.target.value)
-            }}
+            onChange={onDateChange}
           />
         </div>
-        <div>
+        <div className="input">
           <label htmlFor="agreement-currency">Agreement Currency</label>
           <select
             id="agreement-currency"
             name="agreement-currency"
             value={agrCur}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setAgrCur(e.target.value)}
+            onChange={onAgrCurChange}
           >
             {codes.map(c => (
               <option key={c} value={c}>
@@ -107,13 +122,13 @@ const Home: React.FC = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className="input">
           <label htmlFor="report-currency">Report Currency</label>
           <select
             id="report-currency"
             name="report-currency"
             value={repCur}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setRepCur(e.target.value)}
+            onChange={onRepCurChange}
           >
             {codes.map(c => (
               <option key={c} value={c}>
@@ -123,13 +138,47 @@ const Home: React.FC = () => {
           </select>
         </div>
       </form>
-      <button onClick={onGetRate}>Get rate</button>
+      {rate == '' ? <button onClick={onGetRate}>Get rate</button> : <h2>{rate}</h2>}
 
-      {rate != '' && (
-        <div>
-          <h1>{rate}</h1>
-        </div>
-      )}
+      <style global jsx>
+        {`
+          body {
+            font-family: sans-serif;
+          }
+
+          label {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+            display: block;
+            padding-bottom: 0.2rem;
+          }
+
+          input {
+            font-size: 1.2rem;
+          }
+
+          select {
+            font-size: 0.9rem;
+            font-family: inherit;
+            padding: 0.2rem;
+          }
+
+          button {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            font-family: inherit;
+            padding: 0.3rem 0.6rem;
+            background: lightgray;
+            text-transform: uppercase;
+            border: 1px solid darkgray;
+            border-radius: 3px;
+          }
+
+          .input {
+            margin-bottom: 0.5rem;
+          }
+        `}
+      </style>
     </div>
   )
 }
